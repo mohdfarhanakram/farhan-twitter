@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -45,4 +46,14 @@ dependencies {
     //RxJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.13-RC4'
+
+    //Dagger-2
+    implementation 'com.google.dagger:dagger:2.31'
+    kapt 'com.google.dagger:dagger-compiler:2.29.1'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'com.google.firebase:firebase-firestore:22.1.2'
+    implementation 'com.firebaseui:firebase-ui-firestore:6.2.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.2'
 }
