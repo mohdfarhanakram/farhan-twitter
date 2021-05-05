@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961535521476",
+    "project_id": "farhan-twitter",
+    "storage_bucket": "farhan-twitter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961535521476:android:e8cae7373d6e99cabd0f91",
+        "android_client_info": {
+          "package_name": "com.farhan.twitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961535521476-6lvq6on9lptjbvknnsqptnb3vmnv4vht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEstEmCZWFkA6_bFw9juy76fm93TAZ6Wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961535521476-6lvq6on9lptjbvknnsqptnb3vmnv4vht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
