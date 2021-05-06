@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -15,6 +16,24 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.0-beta01'
     }
 
     buildTypes {
@@ -42,6 +61,15 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //Compose
+    implementation 'androidx.compose.ui:ui:1.0.0-beta06'
+    implementation 'androidx.compose.ui:ui-tooling:1.0.0-beta06'  // Tooling support (Previews, etc.)
+    implementation 'androidx.compose.foundation:foundation:1.0.0-beta06' // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation 'androidx.compose.material:material:1.0.0-beta06' // Material Design
+    implementation 'androidx.compose.material:material-icons-core:1.0.0-beta06'  // Material design icons
+    implementation 'androidx.compose.material:material-icons-extended:1.0.0-beta06'
+    implementation 'androidx.activity:activity-compose:1.3.0-alpha07'// Integration with activities
 
     //RxJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
