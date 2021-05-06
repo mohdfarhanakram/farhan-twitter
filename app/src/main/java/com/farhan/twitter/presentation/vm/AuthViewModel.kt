@@ -2,6 +2,7 @@ package com.farhan.twitter.presentation.vm
 
 import com.farhan.twitter.data.repository.Repository
 import com.farhan.twitter.model.Response
+import com.farhan.twitter.model.User
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.CompletableObserver
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -29,7 +30,8 @@ class AuthViewModel @Inject constructor(
                 }
 
                 override fun onComplete() {
-                    liveData.postValue(Response.Success("Login Successfully"))
+                    val user = User("",email,"")
+                    liveData.postValue(Response.Success(user))
                 }
 
                 override fun onError(e: Throwable) {

@@ -22,13 +22,13 @@ private val MontserratFontFamily = FontFamily(
 val AppTypography = Typography(
     defaultFontFamily = MontserratFontFamily,
     h1 = TextStyle(
-        fontWeight = FontWeight.Light,
-        fontSize = 96.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
         letterSpacing = (-1.5).sp
     ),
     h2 = TextStyle(
         fontWeight = FontWeight.Light,
-        fontSize = 60.sp,
+        fontSize = 15.sp,
         letterSpacing = (-0.5).sp
     ),
     h3 = TextStyle(

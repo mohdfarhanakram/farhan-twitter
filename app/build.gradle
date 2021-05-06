@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -67,6 +68,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    //ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.fragment:fragment-ktx:1.3.3'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
     //Compose
     implementation 'androidx.compose.ui:ui:1.0.0-beta06'
     implementation 'androidx.compose.ui:ui-tooling:1.0.0-beta06'  // Tooling support (Previews, etc.)
@@ -84,9 +91,10 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.13-RC4'
 
-    //Dagger-2
-    implementation 'com.google.dagger:dagger:2.31'
-    kapt 'com.google.dagger:dagger-compiler:2.29.1'
+    //Hilt
+    implementation 'com.google.dagger:hilt-android:2.35.1'
+    kapt 'com.google.dagger:hilt-compiler:2.35.1'
+
 
     //Firebase
     implementation 'com.google.firebase:firebase-auth:20.0.4'
