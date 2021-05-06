@@ -1,4 +1,4 @@
-package com.farhan.twitter.persentation.activity
+package com.farhan.twitter.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 

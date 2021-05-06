@@ -1,4 +1,4 @@
-package com.farhan.twitter.persentation.theme
+package com.farhan.twitter.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

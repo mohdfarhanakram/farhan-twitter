@@ -1,4 +1,4 @@
-package com.farhan.twitter.persentation.compose
+package com.farhan.twitter.presentation.compose
 
 /**
  *   Created by Mohd Farhan on 06/05/2021.
