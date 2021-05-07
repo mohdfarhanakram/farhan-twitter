@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 /**
  *   Created by Mohd Farhan on 06/05/2021.
  */
-@AndroidEntryPoint
 abstract class BaseActivity : AppCompatActivity() {
 
     fun showResult(result: Response<Any>) {
@@ -32,20 +31,21 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    lateinit var dialog : ProgressDialog
+    var dialog : ProgressDialog? = null
 
     fun showToastMessage(message : String){
         Toast.makeText(this,message,Toast.LENGTH_LONG).show()
     }
 
-    fun showLoader(){
-        val dialog = ProgressDialog(this)
-        dialog.show()
+    private fun showLoader(){
+        hideLoader()
+        dialog = ProgressDialog(this)
+        dialog!!.show()
     }
 
-    fun hideLoader(){
-        if(dialog.isShowing){
-            dialog.dismiss()
+    private fun hideLoader(){
+        if(dialog!=null && dialog?.isShowing == true){
+            dialog?.dismiss()
         }
     }
 }

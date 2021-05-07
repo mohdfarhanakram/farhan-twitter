@@ -1,6 +1,7 @@
 package com.farhan.twitter
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -10,5 +11,6 @@ import dagger.hilt.android.HiltAndroidApp
 class TwitterApplication : Application(){
     override fun onCreate() {
         super.onCreate()
+        //FirebaseApp.initializeApp(this)
     }
 }

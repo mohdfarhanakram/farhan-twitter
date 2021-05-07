@@ -3,6 +3,7 @@ package com.farhan.twitter.presentation.activity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.farhan.twitter.model.User
 import com.farhan.twitter.presentation.compose.RegisterUI
 import com.farhan.twitter.presentation.vm.AuthViewModel
@@ -35,11 +36,9 @@ class RegisterActivity : BaseActivity(){
 
     override fun populateUi(result: Any) {
         when(result){
-            is User -> {
-                return
-            }
             is String -> {
                 showToastMessage(result)
+                finish()
                 return
             }
         }

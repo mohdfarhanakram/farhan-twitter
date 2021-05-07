@@ -1,6 +1,8 @@
 package com.farhan.twitter.data.repository
 
 import com.farhan.twitter.model.Tweet
+import com.farhan.twitter.model.User
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -10,7 +12,7 @@ import io.reactivex.rxjava3.core.Flowable
  */
 interface IRepository {
     fun register(email : String, password : String, name : String) : Completable
-    fun login(email : String, password : String) : Completable
+    fun login(email : String, password : String) : Flowable<User>
     fun signOut()
     fun userId() : String
     fun tweet(userId : String, tweet: Tweet) : Completable

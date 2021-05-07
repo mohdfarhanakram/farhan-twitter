@@ -1,8 +1,11 @@
 package com.farhan.twitter.data.remote
 
+import com.farhan.twitter.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 import javax.inject.Inject
 
 /**
@@ -30,12 +33,16 @@ class FirebaseAuthSource @Inject constructor(
         }
     }
 
-    override fun login(email: String, password: String): Completable {
-        return Completable.create { emitter ->
+    override fun login(email: String, password: String): Flowable<String> {
+
+        return Flowable.create({ emitter ->
+
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnFailureListener { e -> emitter.onError(e) }
-                .addOnSuccessListener { emitter.onComplete() }
-        }
+                .addOnSuccessListener {
+                    emitter.onNext(userId())
+                }
+        }, BackpressureStrategy.BUFFER)
     }
 
     override fun signOut(){

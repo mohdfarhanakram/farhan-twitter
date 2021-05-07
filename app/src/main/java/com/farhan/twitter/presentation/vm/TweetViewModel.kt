@@ -1,11 +1,13 @@
 package com.farhan.twitter.presentation.vm
 
-import com.farhan.twitter.data.repository.Repository
+import androidx.lifecycle.SavedStateHandle
+import com.farhan.twitter.data.repository.IRepository
 import com.farhan.twitter.model.Response
 import com.farhan.twitter.model.Tweet
 import com.farhan.twitter.model.TweetListWrapper
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QuerySnapshot
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.CompletableObserver
 import io.reactivex.rxjava3.core.Observer
@@ -18,8 +20,10 @@ import javax.inject.Inject
 /**
  * Created by Mohd Farhan on 5/6/2021.
  */
+@HiltViewModel
 class TweetViewModel @Inject constructor(
-    private val repository: Repository
+    private val savedStateHandle: SavedStateHandle,
+    private val repository: IRepository
 ): BaseVM(){
 
     private val disposable: CompositeDisposable = CompositeDisposable()

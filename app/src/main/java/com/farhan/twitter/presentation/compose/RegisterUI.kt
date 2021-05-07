@@ -38,6 +38,13 @@ fun RegisterUI(onRegister: (email:String,password:String,name:String) -> Unit) {
                 PasswordVisualTransformation()
             )
         }
+
+        var confirmPasswordVisualTransformation by remember {
+            mutableStateOf<VisualTransformation>(
+                PasswordVisualTransformation()
+            )
+        }
+
         val passwordInteractionState = remember { MutableInteractionSource() }
         val confirmPasswordInteractionState = remember { MutableInteractionSource() }
         val emailInteractionState = remember { MutableInteractionSource() }
@@ -49,7 +56,7 @@ fun RegisterUI(onRegister: (email:String,password:String,name:String) -> Unit) {
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
         ) {
-            item { Spacer(modifier = Modifier.height(80.dp)) }
+            item { Spacer(modifier = Modifier.height(40.dp)) }
             item {
                 Text(
                     text = "Twitter Register",
@@ -152,7 +159,7 @@ fun RegisterUI(onRegister: (email:String,password:String,name:String) -> Unit) {
             item { Spacer(modifier = Modifier.height(15.dp)) }
             item {
                 OutlinedTextField(
-                    value = password,
+                    value = confirmPassword,
                     leadingIcon = {
                         FaIcon(
                             faIcon = FaIcons.Key,
@@ -164,8 +171,8 @@ fun RegisterUI(onRegister: (email:String,password:String,name:String) -> Unit) {
                             faIcon = FaIcons.EyeSlash,
                             tint = LocalContentColor.current.copy(alpha = LocalContentAlpha.current),
                             modifier = Modifier.clickable(onClick = {
-                                passwordVisualTransformation =
-                                    if (passwordVisualTransformation != VisualTransformation.None) {
+                                confirmPasswordVisualTransformation =
+                                    if (confirmPasswordVisualTransformation != VisualTransformation.None) {
                                         VisualTransformation.None
                                     } else {
                                         PasswordVisualTransformation()
@@ -186,7 +193,7 @@ fun RegisterUI(onRegister: (email:String,password:String,name:String) -> Unit) {
                         confirmPassword = it
                     },
                     interactionSource = confirmPasswordInteractionState,
-                    visualTransformation = passwordVisualTransformation,
+                    visualTransformation = confirmPasswordVisualTransformation,
                 )
             }
             item { Spacer(modifier = Modifier.height(40.dp)) }

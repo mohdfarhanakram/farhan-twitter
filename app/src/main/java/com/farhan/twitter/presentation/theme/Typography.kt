@@ -23,7 +23,7 @@ val AppTypography = Typography(
     defaultFontFamily = MontserratFontFamily,
     h1 = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
+        fontSize = 25.sp,
         letterSpacing = (-1.5).sp
     ),
     h2 = TextStyle(

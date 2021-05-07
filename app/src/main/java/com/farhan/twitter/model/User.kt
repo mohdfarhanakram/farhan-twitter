@@ -6,5 +6,6 @@ package com.farhan.twitter.model
 data class User(
     val name : String,
     val email : String,
-    val imageUrl : String
+    val imageUrl : String,
+    val uId : String
 )
