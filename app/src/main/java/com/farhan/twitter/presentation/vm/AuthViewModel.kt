@@ -32,30 +32,6 @@ class AuthViewModel @Inject constructor(
     private val disposable: CompositeDisposable = CompositeDisposable()
 
     fun login(email : String, password : String){
-        /*liveData.postValue(Response.Loading)
-        repository.login(email, password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : Observer<DocumentSnapshot?> {
-                override fun onSubscribe(d: Disposable?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onNext(t: DocumentSnapshot?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onError(e: Throwable?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onComplete() {
-                    TODO("Not yet implemented")
-                }
-
-            })*/
-
-
         liveData.postValue(Response.Loading)
         repository.login(email,password)
             .subscribeOn(Schedulers.io())

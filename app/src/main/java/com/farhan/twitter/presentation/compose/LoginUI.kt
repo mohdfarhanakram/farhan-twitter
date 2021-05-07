@@ -39,8 +39,8 @@ fun LoginUI(onLogin: (email:String,password:String) -> Unit, register: ()->Unit)
     Scaffold {
 
         //TextFields
-        var email by remember { mutableStateOf(TextFieldValue("")) }
-        var password by remember { mutableStateOf(TextFieldValue("")) }
+        var email by remember { mutableStateOf(TextFieldValue("farru@gmail.com")) }
+        var password by remember { mutableStateOf(TextFieldValue("123456")) }
         var hasError by remember { mutableStateOf(false) }
         var passwordVisualTransformation by remember {
             mutableStateOf<VisualTransformation>(

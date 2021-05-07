@@ -46,7 +46,7 @@ class LoginActivity : BaseActivity(){
     override fun populateUi(result: Any) {
         when(result){
             is User -> {
-                showToastMessage(result.name)
+                navigateToTweetActivity(result)
                 return
             }
             is String -> {
@@ -54,5 +54,12 @@ class LoginActivity : BaseActivity(){
                 return
             }
         }
+    }
+
+    private fun navigateToTweetActivity(user:User){
+       val intent = Intent(this,TweetListActivity::class.java)
+       intent.putExtra("userInfo",user)
+       startActivity(intent)
+       finish()
     }
 }

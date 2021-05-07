@@ -19,7 +19,7 @@ class FirebaseDataSource @Inject constructor(
     override fun tweet(userId: String, tweet: Tweet): Completable {
         return Completable.create { emitter ->
             val requestBatch = firebaseFirestore.batch()
-            val tweetReference = firebaseFirestore.collection("tweets").document(userId)
+            val tweetReference = firebaseFirestore.collection("tweets").document(userId+tweet.timeStamp)
             requestBatch[tweetReference] = tweet
             requestBatch.commit()
                 .addOnFailureListener { e -> emitter.onError(e) }
