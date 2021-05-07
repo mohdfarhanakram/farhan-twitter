@@ -19,7 +19,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 /**
  * Created by Mohd Farhan on 5/6/2021.
@@ -44,7 +43,7 @@ class TweetViewModel @Inject constructor(
     }
 
     fun postTweet(userId: String, tweet: Tweet) {
-        liveData.postValue(Response.Loading)
+        //liveData.postValue(Response.Loading)
         repository.tweet(userId, tweet)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -86,6 +85,12 @@ class TweetViewModel @Inject constructor(
                                 } else {
                                     val map : Map<String,Any> = dc.document.data?.toMap() as Map<String, Any>
                                     val tweet: Tweet = getTweetObj(map)
+
+                                    val tweetListWrapper = TweetListWrapper(ArrayList())
+                                    tweetListWrapper.tweetList.addAll(tweetList)
+                                    tweetListWrapper.tweetList.add(tweet)
+                                    tweetListData.value = tweetListWrapper
+                                    tweetList.add(tweet)
                                     //liveData.postValue(Response.Success(tweet))
                                 }
                             }

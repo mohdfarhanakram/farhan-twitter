@@ -35,11 +35,17 @@ fun TweetInput(onSendMessage : (message:String)->Unit){
             modifier = Modifier.weight(1f),
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
-            keyboardActions = KeyboardActions { onSendMessage.invoke(inputValue.value) },
+            keyboardActions = KeyboardActions {
+                onSendMessage.invoke(inputValue.value)
+                inputValue.value = ""
+            },
         )
         Button(
             modifier = Modifier.height(56.dp),
-            onClick = { onSendMessage.invoke(inputValue.value) },
+            onClick = {
+                onSendMessage.invoke(inputValue.value)
+                inputValue.value = ""
+            },
             enabled = inputValue.value.isNotBlank(),
         ) {
             Icon(

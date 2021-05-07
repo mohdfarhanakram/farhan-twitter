@@ -23,7 +23,7 @@ fun TwitterListUi(modifier: Modifier = Modifier, tweetListWrapper: TweetListWrap
 
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.BottomEnd
     ) {
         LazyColumn {
             items(tweets){ tweet ->

@@ -10,6 +10,7 @@ import com.farhan.twitter.presentation.compose.TwitterListScreen
 import com.farhan.twitter.presentation.vm.AuthViewModel
 import com.farhan.twitter.presentation.vm.TweetViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.ArrayList
 
 /**
  *   Created by Mohd Farhan on 06/05/2021.
@@ -40,7 +41,7 @@ class TweetListActivity : BaseActivity() {
     override fun populateUi(result: Any) {
         when(result){
             is Tweet -> {
-                showToastMessage("Tweet successfully")
+                //showToastMessage("Tweet successfully")
                 return
             }
             is TweetListWrapper->{
