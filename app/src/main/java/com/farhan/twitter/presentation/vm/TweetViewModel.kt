@@ -35,9 +35,6 @@ class TweetViewModel @Inject constructor(
         TweetListWrapper(ArrayList())
     )
 
-    private val tweetList = ArrayList<Tweet>()
-    private var counter = 0
-
     init {
         getTweets()
     }
@@ -69,38 +66,15 @@ class TweetViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .toObservable()
-            .subscribe(object : Observer<QuerySnapshot?> {
+            .subscribe(object : Observer<TweetListWrapper?> {
                 override fun onSubscribe(d: Disposable?) {
                     disposable.add(d)
                 }
 
-                override fun onNext(queryDocumentSnapshots: QuerySnapshot?) {
-                    if (queryDocumentSnapshots != null) {
-                        for (dc in queryDocumentSnapshots.documentChanges) {
-                            if (dc.type == DocumentChange.Type.ADDED) {
-                                if (counter == 0) {
-                                    val map : Map<String,Any> = dc.document.data?.toMap() as Map<String, Any>
-                                    val tweet: Tweet = getTweetObj(map)
-                                    tweetList.add(tweet)
-                                } else {
-                                    val map : Map<String,Any> = dc.document.data?.toMap() as Map<String, Any>
-                                    val tweet: Tweet = getTweetObj(map)
-
-                                    val tweetListWrapper = TweetListWrapper(ArrayList())
-                                    tweetListWrapper.tweetList.addAll(tweetList)
-                                    tweetListWrapper.tweetList.add(tweet)
-                                    tweetListData.value = tweetListWrapper
-                                    tweetList.add(tweet)
-                                    //liveData.postValue(Response.Success(tweet))
-                                }
-                            }
-                        }
-                        if (counter == 0) {
-                            val tweetListWrapper = TweetListWrapper(tweetList)
-                            liveData.postValue(Response.Success(tweetListWrapper))
-                            tweetListData.value = tweetListWrapper
-                            counter++
-                        }
+                override fun onNext(tweetListWrapper: TweetListWrapper?) {
+                    if (tweetListWrapper != null) {
+                        liveData.postValue(Response.Success(tweetListWrapper))
+                        tweetListData.value = tweetListWrapper
                     }
                 }
 

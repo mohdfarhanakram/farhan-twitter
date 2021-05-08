@@ -1,6 +1,8 @@
 package com.farhan.twitter.data.remote
 
+import com.farhan.twitter.model.Response
 import com.farhan.twitter.model.Tweet
+import com.farhan.twitter.model.TweetListWrapper
 import com.farhan.twitter.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
@@ -27,7 +29,9 @@ class FirebaseDataSource @Inject constructor(
         }
     }
 
-    override fun tweets(): Flowable<QuerySnapshot> {
+    override fun tweets(): Flowable<TweetListWrapper> {
+        val tweetList = ArrayList<Tweet>()
+        var counter = 0
         return Flowable.create({ emitter ->
             val reference =
                 firebaseFirestore.collection("tweets")
@@ -36,7 +40,32 @@ class FirebaseDataSource @Inject constructor(
                     emitter.onError(e)
                 }
                 if (queryDocumentSnapshots != null) {
-                    emitter.onNext(queryDocumentSnapshots)
+
+                    for (dc in queryDocumentSnapshots.documentChanges) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            if (counter == 0) {
+                                val map : Map<String,Any> = dc.document.data?.toMap() as Map<String, Any>
+                                val tweet: Tweet = getTweetObj(map)
+                                tweetList.add(tweet)
+                            } else { // its only for single tweet
+                                val map : Map<String,Any> = dc.document.data?.toMap() as Map<String, Any>
+                                val tweet: Tweet = getTweetObj(map)
+
+                                val tweetListWrapper = TweetListWrapper(ArrayList(),true)
+                                tweetListWrapper.tweetList.addAll(tweetList)
+                                tweetListWrapper.tweetList.add(tweet)
+                                emitter.onNext(tweetListWrapper)
+                                tweetList.add(tweet)
+                            }
+                        }
+                    }
+
+                    if (counter == 0) {  // its for loading all tweets
+                        val tweetListWrapper = TweetListWrapper(tweetList)
+                        emitter.onNext(tweetListWrapper)
+                        counter++
+                    }
+
                 }
             }
             emitter.setCancellable { registration.remove() }
@@ -59,5 +88,9 @@ class FirebaseDataSource @Inject constructor(
             }
             emitter.setCancellable { registration.remove() }
         }, BackpressureStrategy.BUFFER)
+    }
+
+    private fun getTweetObj(map : Map<String, Any>) : Tweet{
+        return Tweet(map["post"].toString(),map["userId"].toString(),map["name"].toString(),map["email"].toString(),map["imageUrl"].toString(),map["timeStamp"].toString())
     }
 }
